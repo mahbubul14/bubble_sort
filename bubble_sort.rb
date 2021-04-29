@@ -1,41 +1,57 @@
 def bubble_sort(arr)
-    p1 = 0
-    p2 = 1
+    $arr = arr
 
-    def picker(arr, p1, p2)
+    $p1 = 0
+    $p2 = 1
+
+    $isSwapped = true
+    $sorted = false
+    $counter = 0
+
+    def picker(p1, p2)
         return {
-            "v1": arr[p1],
-            "v2": arr[p2]
+            "v1": $arr[p1],
+            "v2": $arr[p2]
         }
     end
 
-    def swap(arr, p1, p2)
-        values = picker(arr, p1, p2)
-        # arr.delete_at(p2)
-        # arr.delete_at(p1)
-        
+    def swap()
+        values = picker($p1, $p2)  
 
-        arr[p1] = values[:v2]
-        arr[p2] = values[:v1]
+        v1 = values[:v1]
+        v2 = values[:v2]
 
-        return arr
-        # isSwapped = true
-        # puts picker(arr, p1, p2)
-
-        # return values[:v1]
+        if v1 > v2
+            $arr[$p1] = v2
+            $arr[$p2] = v1
+            $isSwapped = true
+            puts $arr
+        end
     end
 
-    puts swap(arr, p1, p2)
+    def reset
+        $p1 = 0
+        $p2 = 1
+        $isSwapped = false
+    end
 
-    # isSwapped = false
-    # sorted = false
+    until $sorted
+        if $p2 == $arr.length
+            if $isSwapped
+                reset()
+                puts $arr
+            else
+                $sorted = true
+                puts $arr
+                puts "Sorted!"
+            end
+        else
+            swap()
 
-    
-
-    # until sorted
-    #     swap
-    #     puts arr
-    # end
+            $p1 += 1
+            $p2 += 1
+        end
+    end
 end
 
-bubble_sort([5, 4, 3, 6, 1, 7])
+bubble_sort([5, 4, 3, 6,-6,3,4,5,3,3,4,-1])
