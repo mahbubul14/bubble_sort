@@ -38,4 +38,4 @@ def bubble_sort(arr)
     # end
 end
 
-bubble_sort([5, 4, 3, 6, 8, 7])
+bubble_sort([5, 4, 3, 6, 1, 7])
