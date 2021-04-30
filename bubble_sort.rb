@@ -1,63 +1,25 @@
 # frozen_string_literal: true
 
 def bubble_sort(arr)
-  j = 0
-  is_swapped = true
-  sorted = false
-
-  until sorted
-    if j + 1 == arr.length
-      if is_swapped
-        j = 0
-        is_swapped = false
-      else
-        sorted = true
-        return arr
-      end
-    else
-      v1 = arr[j]
-      v2 = arr[j + 1]
-
-      if v1 > v2
-        arr[j] = v2
-        arr[j + 1] = v1
-        is_swapped = true
-      end
-
-      j += 1
+  loop do
+    sorted = false
+    (arr.length - 1).times do |i|
+      arr[i], arr[i + 1] = arr[i + 1], arr[i], sorted = true if arr[i] > arr[i + 1]
     end
+    break unless sorted
   end
+  arr
 end
 
-puts bubble_sort([5, 4, 3, 6, -6, 3, 4, 5, 3, 3, 4, -1])
+# bubble sort for strings
 
 def bubble_sort_by(arr)
-  j = 0
-
-  is_swapped = true
-  sorted = false
-
-  until sorted
-    if j + 1 == arr.length
-      if is_swapped
-        j = 0
-        is_swapped = false
-      else
-        sorted = true
-        return arr
-      end
-    else
-      v1 = arr[j]
-      v2 = arr[j + 1]
-
-      if (yield arr[j], arr[j + 1]).to_i >= 0
-        arr[j] = v2
-        arr[j + 1] = v1
-        is_swapped = true
-      end
-      j += 1
+  loop do
+    sorted = false
+    (arr.length - 1).times do |i|
+      arr[i], arr[i + 1] = arr[i + 1], arr[i], sorted = true if yield(arr[i], arr[i + 1]).positive?
     end
+    break unless sorted
   end
+  arr
 end
-
-puts bubble_sort_by(%w[hi hello hey]) { |left, right| left.length - right.length }
