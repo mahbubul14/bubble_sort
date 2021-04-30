@@ -7,7 +7,7 @@
 ## Bubble sort collaborative project
 Bubble Sort solution for both strings and integers using Ruby language.
 
-![screenshot](/screenshot_1.png)
+![screenshot](/bubble_code.png)
 
 ## Built With
 
